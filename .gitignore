@@ -1,1 +1,5 @@
 appsettings.json
+secrets.json
+obj
+.vs/
+bin
