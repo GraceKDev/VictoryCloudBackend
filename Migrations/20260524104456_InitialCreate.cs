@@ -3,7 +3,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace myapi.Migrations
+namespace VictoryCloudApi.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration

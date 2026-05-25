@@ -1,5 +1,7 @@
 appsettings.json
 secrets.json
-obj
+obj/*
 .vs/
+bin/*
 bin
+obj

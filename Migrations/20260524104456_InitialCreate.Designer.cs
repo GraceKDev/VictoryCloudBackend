@@ -3,12 +3,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using MyApi.Data;
+
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+using VictoryCloudApi.Data;
 
 #nullable disable
 
-namespace myapi.Migrations
+namespace VictoryCloudApi.Migrations
 {
     [DbContext(typeof(MyDbContext))]
     [Migration("20260524104456_InitialCreate")]

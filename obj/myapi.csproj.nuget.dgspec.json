@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\Grace\\OneDrive\\Desktop\\victoryapi\\VictoryCloudApi\\myapi.csproj": {}
+    "C:\\Users\\Grace\\OneDrive\\Desktop\\victoryapi\\VictoryCloudApi\\myapi.csproj": {}
   },
   "projects": {
-    "c:\\Users\\Grace\\OneDrive\\Desktop\\victoryapi\\VictoryCloudApi\\myapi.csproj": {
+    "C:\\Users\\Grace\\OneDrive\\Desktop\\victoryapi\\VictoryCloudApi\\myapi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\Grace\\OneDrive\\Desktop\\victoryapi\\VictoryCloudApi\\myapi.csproj",
+        "projectUniqueName": "C:\\Users\\Grace\\OneDrive\\Desktop\\victoryapi\\VictoryCloudApi\\myapi.csproj",
         "projectName": "myapi",
-        "projectPath": "c:\\Users\\Grace\\OneDrive\\Desktop\\victoryapi\\VictoryCloudApi\\myapi.csproj",
+        "projectPath": "C:\\Users\\Grace\\OneDrive\\Desktop\\victoryapi\\VictoryCloudApi\\myapi.csproj",
         "packagesPath": "C:\\Users\\Grace\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\Grace\\OneDrive\\Desktop\\victoryapi\\VictoryCloudApi\\obj\\",
+        "outputPath": "C:\\Users\\Grace\\OneDrive\\Desktop\\victoryapi\\VictoryCloudApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
