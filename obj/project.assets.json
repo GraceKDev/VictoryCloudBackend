@@ -3538,11 +3538,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Grace\\OneDrive\\Desktop\\victoryapi\\VictoryCloudApi\\myapi.csproj",
-      "projectName": "myapi",
-      "projectPath": "C:\\Users\\Grace\\OneDrive\\Desktop\\victoryapi\\VictoryCloudApi\\myapi.csproj",
+      "projectUniqueName": "c:\\Users\\Grace\\OneDrive\\Desktop\\victoryapi\\VictoryCloudApi\\VictoryCloudApi.csproj",
+      "projectName": "VictoryCloudApi",
+      "projectPath": "c:\\Users\\Grace\\OneDrive\\Desktop\\victoryapi\\VictoryCloudApi\\VictoryCloudApi.csproj",
       "packagesPath": "C:\\Users\\Grace\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Grace\\OneDrive\\Desktop\\victoryapi\\VictoryCloudApi\\obj\\",
+      "outputPath": "c:\\Users\\Grace\\OneDrive\\Desktop\\victoryapi\\VictoryCloudApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

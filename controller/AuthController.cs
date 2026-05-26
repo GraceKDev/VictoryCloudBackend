@@ -19,7 +19,7 @@ public class AuthController:ControllerBase
         _config = config;
     }
 
-    [HttpPost("Login")]
+    [HttpPost("login")]
     public async Task<IActionResult> Login(LoginRequestData loginRequestData) 
     {
         if(loginRequestData == null)
@@ -80,12 +80,10 @@ public class AuthController:ControllerBase
         {
             return BadRequest("Invalid or expired reset token.");
         }
-
         user.Password = PasswordHelper.Hash(resetData.NewPassword);
         user.PasswordResetToken = null;
         user.PasswordResetTokenExpiry = null;
         await _context.SaveChangesAsync();
-
         return Ok(new { message = "Password reset successful." });
     }
 }
