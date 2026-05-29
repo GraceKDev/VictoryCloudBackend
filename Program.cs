@@ -1,9 +1,10 @@
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Npgsql;
-using Microsoft.EntityFrameworkCore.Design;
 using System.Threading.RateLimiting;
+using System.Text;
 using VictoryCloudApi.Data;
 using VictoryCloudApi.Util;
 var builder = WebApplication.CreateBuilder(args);
@@ -21,12 +22,38 @@ catch (Exception ex)
     Console.WriteLine($"Database connection failed: {ex.Message}");
 
 }
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("NextJsPolicy", policy =>
+    {
+        policy.WithOrigins("http://localhost:3000")
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowCredentials(); // required for cookies
+    });
+});
 builder.Services.AddOpenApi();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        var jwtKey = builder.Configuration["Jwt:Key"]
+            ?? throw new InvalidOperationException("JWT Key is not configured.");
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
+        };
+    });
+builder.Services.AddAuthorization();
 builder.Services.AddRateLimiter(options =>
 {
     options.AddFixedWindowLimiter("v1", limiter =>
@@ -48,13 +75,13 @@ if (app.Environment.IsDevelopment())
 app.UseSwagger();
 app.UseSwaggerUI();
 // app.UseHttpsRedirection();
+app.UseCors("NextJsPolicy");
+app.UseAuthentication();
+app.UseAuthorization();
 app.MapControllers();
 app.UseRateLimiter();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+
 
 var v1 = app.MapGroup("/api/v1").RequireRateLimiting("v1");
 
@@ -63,7 +90,4 @@ var v1 = app.MapGroup("/api/v1").RequireRateLimiting("v1");
 
 app.Run();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
+

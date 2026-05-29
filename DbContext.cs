@@ -9,5 +9,6 @@ namespace VictoryCloudApi.Data
             
         }
         public DbSet<User> Users { get; set; }
+        public DbSet<Config> Config { get; set; }
     }
 }
