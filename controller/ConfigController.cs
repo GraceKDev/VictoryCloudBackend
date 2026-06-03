@@ -32,7 +32,7 @@ public class ConfigController : ControllerBase
     public async Task<IActionResult> UpdateConfig([FromBody] Dictionary<string,string> configRequest)
     {
         if(configRequest == null) {
-            return BadRequest("No config processed");
+            return BadRequest("No config processed.");
         }
         foreach (var (key, value) in configRequest)
         {
@@ -51,7 +51,7 @@ public class ConfigController : ControllerBase
             }
         }
         await _context.SaveChangesAsync();
-        return Ok(new { message = "Config Updated Successfully" });
+        return Ok(new { message = "Config Updated Successfully." });
     }
 }
 
