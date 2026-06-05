@@ -7,7 +7,7 @@ namespace VictoryCloudApi.Models
         public string CoverImageUrl { get; set; } = string.Empty;
         public string[] Tags { get; set; } = [];
         public ComicDetailsDto Details { get; set; } = null!;
-        public List<ChapterDto> Chapters { get; set; } = [];
+        public List<ComicChapterDto> Chapters { get; set; } = [];
         public string? Comments { get; set; }
     }
 
@@ -19,7 +19,7 @@ namespace VictoryCloudApi.Models
         public string ContentRating { get; set; } = string.Empty;
     }
 
-    public class ChapterDto
+    public class ComicChapterDto
     {
         public string ChapterTitle { get; set; } = string.Empty;
         public string[] Images { get; set; } = [];

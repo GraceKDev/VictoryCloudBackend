@@ -12,7 +12,11 @@ namespace VictoryCloudApi.Data
         public DbSet<Config> Config { get; set; }
         public DbSet<Comic> Comics { get; set; }
         public DbSet<Art> Art { get; set; }
+        public DbSet<Writing> Writing {get;set;}
         public DbSet<ComicDetails> ComicDetails { get; set; }
-        public DbSet<Chapter> Chapters { get; set; }
+        public DbSet<ComicChapter> ComicChapters { get; set; }
+        public DbSet<WritingChapter> WritingChapter {get;set;}
+        public DbSet<WritingChapterContent> WritingChapterContent {get;set;}
+        public DbSet<Comment> Comment {get;set;}
     }
 }

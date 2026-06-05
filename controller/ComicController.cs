@@ -34,7 +34,7 @@ public class ComicController : ControllerBase
                 OriginalLanguage = dto.Details.OriginalLanguage,
                 ContentRating = dto.Details.ContentRating,
             },
-            Chapters = dto.Chapters.Select(c => new Chapter
+            Chapters = dto.Chapters.Select(c => new ComicChapter
             {
                 ChapterTitle = c.ChapterTitle,
                 Images = c.Images,
@@ -88,8 +88,8 @@ public class ComicController : ControllerBase
         comic.Details.OriginalLanguage = dto.Details.OriginalLanguage;
         comic.Details.ContentRating = dto.Details.ContentRating;
 
-        _context.Chapters.RemoveRange(comic.Chapters);
-        comic.Chapters = dto.Chapters.Select(c => new Chapter
+        _context.ComicChapters.RemoveRange(comic.Chapters);
+        comic.Chapters = dto.Chapters.Select(c => new ComicChapter
         {
             ChapterTitle = c.ChapterTitle,
             Images = c.Images,
