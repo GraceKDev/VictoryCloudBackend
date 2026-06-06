@@ -3,6 +3,7 @@ namespace VictoryCloudApi.Models
     public class Comment
     {
         public int CommentId {get;set;}
+        public int? ContentId {get;set;}
         public string Content {get;set;} = string.Empty;
         public string CommentMessage {get;set;} = string.Empty;
         public string Author {get;set;} = string.Empty;
