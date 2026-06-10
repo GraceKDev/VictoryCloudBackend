@@ -1,8 +1,10 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VictoryCloudApi.Data;
 using VictoryCloudApi.Models;
 
+[Authorize]
 [ApiController] 
 [Route("Api/[controller]")]
 public class CommentController : ControllerBase
@@ -13,7 +15,7 @@ public class CommentController : ControllerBase
     {
         _context = myDbContext;
     }
-
+   
     [HttpPost("Create/{itemId}")]
     public async Task<IActionResult> Create(int itemId, [FromBody] CommentDto commentDto)
     {
@@ -35,7 +37,7 @@ public class CommentController : ControllerBase
         await _context.SaveChangesAsync();
         return Ok(new{comment.CommentId});
     }
-
+    [AllowAnonymous]
     [HttpGet("Get/{itemId}")]
     public async Task<IActionResult> Get(int itemId)
     {
@@ -44,7 +46,7 @@ public class CommentController : ControllerBase
             .ToListAsync();
         return Ok(comments);
     }
-
+    
     [HttpDelete("Delete/{commentId}")]
     public async Task<IActionResult> Create(int commentId)
     {

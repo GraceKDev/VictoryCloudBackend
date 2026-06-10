@@ -8,7 +8,7 @@ using VictoryCloudApi.Models;
 
 namespace VictoryCloudApi.Controller
 {
-    // [Authorize]
+    [Authorize]
     [ApiController]
     [Route("Api/[controller]")]
     public class ArtController : ControllerBase
@@ -34,13 +34,15 @@ namespace VictoryCloudApi.Controller
             await _context.SaveChangesAsync();
             return Ok(new { createArtDto.ArtId });
         }
+        [AllowAnonymous]
         [HttpGet("GetAll")] 
         public async Task<IActionResult> GetAll()
         {
            var arts = await _context.Art.ToListAsync();
            return Ok(arts);
         }
-
+        
+        [AllowAnonymous]
         [HttpGet("Get/{artId}")] 
         public async Task<IActionResult> Get(int artId)
         {

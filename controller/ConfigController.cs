@@ -27,7 +27,7 @@ public class ConfigController : ControllerBase
         return Ok(config);
     }
 
- 
+    
     [HttpPut("UpdateConfig")] 
     public async Task<IActionResult> UpdateConfig([FromBody] Dictionary<string,string> configRequest)
     {

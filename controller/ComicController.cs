@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VictoryCloudApi.Data;
 using VictoryCloudApi.Models;
 
 [ApiController]
+[Authorize]
 [Route("Api/[controller]")]
 public class ComicController : ControllerBase
 {
@@ -14,6 +16,7 @@ public class ComicController : ControllerBase
         _context = myDbContext;
     }
 
+    
     [HttpPost("Create")]
     public async Task<IActionResult> Create([FromBody] CreateComicDto dto)
     {
@@ -44,7 +47,8 @@ public class ComicController : ControllerBase
         await _context.SaveChangesAsync();
         return Ok(new { comic.ComicId });
     }
-
+    
+    [AllowAnonymous]
     [HttpGet("GetAll")] 
     public async Task<IActionResult> GetAll() {
         List<Comic> comics = await _context.Comics
@@ -53,7 +57,7 @@ public class ComicController : ControllerBase
             .ToListAsync();
         return Ok(comics);
     }
-
+    [AllowAnonymous]
     [HttpGet("Get/{comicId}")] 
     public async Task<IActionResult> Get(int comicId) {
         Console.WriteLine(comicId);

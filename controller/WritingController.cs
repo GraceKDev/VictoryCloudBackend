@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VictoryCloudApi.Data;
@@ -5,6 +6,7 @@ using VictoryCloudApi.Models;
 
 namespace VictoryCloudApi.Controller
 {
+    [Authorize]
     [ApiController]
     [Route("Api/[controller]")]
     public class WritingController : ControllerBase
@@ -56,7 +58,7 @@ namespace VictoryCloudApi.Controller
             await _context.SaveChangesAsync();
             return Ok(new { writing.WritingId });
         }
-
+        [AllowAnonymous]
         [HttpGet("GetAll")]
         public async Task<IActionResult> GetAll()
         {
@@ -68,7 +70,7 @@ namespace VictoryCloudApi.Controller
             Console.Write(writings[0].Chapters.Count);
             return Ok(writings);
         }
-
+        [AllowAnonymous]
         [HttpGet("Get/{writingId}")]
         public async Task<IActionResult> Get(int writingId)
         {

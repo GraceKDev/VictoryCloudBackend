@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VictoryCloudApi.Data;
@@ -12,13 +13,14 @@ public class UserController : ControllerBase
     {
         _context = myDbContext;
     }
+    [AllowAnonymous]
     [HttpGet]
     public async Task<IActionResult> GetUsers()
     {
         var users = await _context.Users.ToListAsync();
         return Ok(users);
     }
-
+    [AllowAnonymous]
     [HttpGet("{id}")]
     public async Task<IActionResult> GetUser(int id)
     {
