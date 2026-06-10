@@ -2,18 +2,21 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using VictoryCloudApi.Data;
 
 #nullable disable
 
-namespace myapi.Migrations
+namespace VictoryCloudApi.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260608063918_writing_content_block")]
+    partial class writing_content_block
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -286,7 +289,10 @@ namespace myapi.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("WritingId")
+                    b.Property<int?>("WritingId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("WritingParentId")
                         .HasColumnType("integer");
 
                     b.HasKey("WritingChapterId");
@@ -304,11 +310,15 @@ namespace myapi.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("WritingChapterContentId"));
 
-                    b.Property<int>("WritingChapterId")
+                    b.Property<int?>("WritingChapterId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("WritingContentPosition")
+                    b.Property<int>("WritingChapterParentId")
                         .HasColumnType("integer");
+
+                    b.Property<string>("WritingContentPosition")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("WritingContentType")
                         .IsRequired()
@@ -381,18 +391,14 @@ namespace myapi.Migrations
                 {
                     b.HasOne("VictoryCloudApi.Models.Writing", null)
                         .WithMany("Chapters")
-                        .HasForeignKey("WritingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("WritingId");
                 });
 
             modelBuilder.Entity("VictoryCloudApi.Models.WritingChapterContent", b =>
                 {
                     b.HasOne("VictoryCloudApi.Models.WritingChapter", null)
                         .WithMany("WritingChapterContent")
-                        .HasForeignKey("WritingChapterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("WritingChapterId");
                 });
 
             modelBuilder.Entity("VictoryCloudApi.Models.WritingChapterContentBlock", b =>

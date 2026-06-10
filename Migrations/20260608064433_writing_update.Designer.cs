@@ -2,18 +2,21 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using VictoryCloudApi.Data;
 
 #nullable disable
 
-namespace myapi.Migrations
+namespace VictoryCloudApi.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    partial class MyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260608064433_writing_update")]
+    partial class writing_update
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -307,8 +310,9 @@ namespace myapi.Migrations
                     b.Property<int>("WritingChapterId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("WritingContentPosition")
-                        .HasColumnType("integer");
+                    b.Property<string>("WritingContentPosition")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("WritingContentType")
                         .IsRequired()

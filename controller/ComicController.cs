@@ -56,6 +56,7 @@ public class ComicController : ControllerBase
 
     [HttpGet("Get/{comicId}")] 
     public async Task<IActionResult> Get(int comicId) {
+        Console.WriteLine(comicId);
         var comic = await _context.Comics
             .Include(c => c.Details)
             .Include(c => c.Chapters)

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VictoryCloudApi.Data;
@@ -7,6 +8,7 @@ using VictoryCloudApi.Models;
 
 namespace VictoryCloudApi.Controller
 {
+    // [Authorize]
     [ApiController]
     [Route("Api/[controller]")]
     public class ArtController : ControllerBase
@@ -19,22 +21,27 @@ namespace VictoryCloudApi.Controller
         [HttpPost("Create")] 
         public async Task<IActionResult> Create([FromBody] Art createArtDto)
         {
-            if(createArtDto == null)
-            {
-                return BadRequest("Art Data is required.");
-                
-            }
-           _context.Art.Add(createArtDto);
-           return Ok(new {createArtDto.ArtId});
+            if (createArtDto == null)
+                return BadRequest("Art data is required.");
+
+            if (string.IsNullOrWhiteSpace(createArtDto.Title))
+                return BadRequest("Title is required.");
+
+            if (string.IsNullOrWhiteSpace(createArtDto.ImageUrl))
+                return BadRequest("ImageUrl is required.");
+
+            _context.Art.Add(createArtDto);
+            await _context.SaveChangesAsync();
+            return Ok(new { createArtDto.ArtId });
         }
-        [HttpPost("GetAll")] 
+        [HttpGet("GetAll")] 
         public async Task<IActionResult> GetAll()
         {
            var arts = await _context.Art.ToListAsync();
            return Ok(arts);
         }
 
-        [HttpPost("Get/{artId}")] 
+        [HttpGet("Get/{artId}")] 
         public async Task<IActionResult> Get(int artId)
         {
            var art = await _context.Art.FirstOrDefaultAsync(a => a.ArtId == artId);
@@ -44,6 +51,8 @@ namespace VictoryCloudApi.Controller
             }
            return Ok(art);
         }
+
+
 
         [HttpPut("Update/{artId}")]
         public async Task<IActionResult> Update(int artId,[FromBody] Art createArtDto)

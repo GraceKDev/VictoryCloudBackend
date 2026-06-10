@@ -17,6 +17,7 @@ namespace VictoryCloudApi.Data
         public DbSet<ComicChapter> ComicChapters { get; set; }
         public DbSet<WritingChapter> WritingChapter {get;set;}
         public DbSet<WritingChapterContent> WritingChapterContent {get;set;}
+        public DbSet<WritingChapterContentBlock> WritingChapterContentBlock {get;set;}
         public DbSet<Comment> Comment {get;set;}
     }
 }
