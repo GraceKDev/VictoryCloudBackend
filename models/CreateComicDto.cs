@@ -8,6 +8,8 @@ namespace VictoryCloudApi.Models
         public string[] Tags { get; set; } = [];
         public ComicDetailsDto Details { get; set; } = null!;
         public List<ComicChapterDto> Chapters { get; set; } = [];
+        public string UploadedAt {get;set;} = string.Empty;
+        public string UpdatedAt {get;set;} = string.Empty;
         public string? Comments { get; set; }
     }
 
@@ -22,6 +24,8 @@ namespace VictoryCloudApi.Models
     public class ComicChapterDto
     {
         public string ChapterTitle { get; set; } = string.Empty;
+        public string UploadedAt {get;set;} = string.Empty;
+        public string UpdatedAt {get;set;} = string.Empty;
         public string[] Images { get; set; } = [];
     }
 }

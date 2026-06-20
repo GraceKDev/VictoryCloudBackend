@@ -5,7 +5,7 @@ using VictoryCloudApi.Data;
 using VictoryCloudApi.Models;
 
 [ApiController]
-[Authorize]
+// [Authorize]
 [Route("Api/[controller]")]
 public class ComicController : ControllerBase
 {

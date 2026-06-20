@@ -7,7 +7,8 @@ namespace VictoryCloudApi.Models
         public string Description { get; set; } = string.Empty;
         public string[] Tags { get; set; } = [];
         public string[] Links { get; set; } = [];
-        public string UploadedAt { get; set; } = string.Empty;
+        public string UploadedAt {get;set;} = string.Empty;
+        public string UpdatedAt {get;set;} = string.Empty;
         public List<WritingChapter> Chapters { get; set; } = [];
         public List<Comment>? Comments { get; set; } = [];
     }
@@ -15,6 +16,8 @@ namespace VictoryCloudApi.Models
     {
         public int WritingChapterId { get; set; }
         public int WritingId { get; set; }
+        public string UploadedAt {get;set;} = string.Empty;
+        public string UpdatedAt {get;set;} = string.Empty;
         public string WritingChapterTitle { get; set; } = string.Empty;
         public List<WritingChapterContent> WritingChapterContent { get; set; } = [];
     }

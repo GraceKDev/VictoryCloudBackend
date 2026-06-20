@@ -8,7 +8,7 @@ using VictoryCloudApi.Models;
 
 namespace VictoryCloudApi.Controller
 {
-    [Authorize]
+    // [Authorize]
     [ApiController]
     [Route("Api/[controller]")]
     public class ArtController : ControllerBase

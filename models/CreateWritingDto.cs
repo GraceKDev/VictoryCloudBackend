@@ -9,11 +9,14 @@ namespace VictoryCloudApi.Models
         public string[] Links {get;set;} = [];
         public WritingChapterDto[] Chapters  {get;set;} = [];
         public string UploadedAt {get;set;} = string.Empty;
+        public string UpdatedAt {get;set;} = string.Empty;
 
     }
     public class WritingChapterDto
     {
         public string ChapterTitle {get;set;} = string.Empty;
+        public string UploadedAt {get;set;} = string.Empty;
+        public string UpdatedAt {get;set;} = string.Empty;
         public WritingChapterContentDto[] Content {get;set;} = [];
     }
     public class WritingChapterContentDto

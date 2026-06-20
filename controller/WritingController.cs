@@ -6,7 +6,7 @@ using VictoryCloudApi.Models;
 
 namespace VictoryCloudApi.Controller
 {
-    [Authorize]
+    // [Authorize]
     [ApiController]
     [Route("Api/[controller]")]
     public class WritingController : ControllerBase
@@ -34,9 +34,12 @@ namespace VictoryCloudApi.Controller
                 Tags = dto.Tags,
                 Links = dto.Links,
                 UploadedAt = dto.UploadedAt,
+                UpdatedAt = dto.UpdatedAt,
                 Chapters = dto.Chapters.Select(c => new WritingChapter
                 {
                     WritingChapterTitle = c.ChapterTitle,
+                    UploadedAt = c.UpdatedAt,
+                    UpdatedAt = c.UpdatedAt,
                     WritingChapterContent = c.Content.Select(wcc => new WritingChapterContent
                     {
                         WritingContentPosition = wcc.ContentPosition,
@@ -100,10 +103,11 @@ namespace VictoryCloudApi.Controller
                 return NotFound($"Writing with Id {writingId} not found.");
 
             writing.Title = dto.Title;
+            writing.UploadedAt = dto.UploadedAt;
+            writing.UpdatedAt = dto.UpdatedAt;
             writing.Description = dto.Description;
             writing.Tags = dto.Tags;
             writing.Links = dto.Links;
-            writing.UploadedAt = dto.UploadedAt;
 
             await _context.SaveChangesAsync();
             return Ok(writing);
@@ -139,6 +143,8 @@ namespace VictoryCloudApi.Controller
             var chapter = new WritingChapter
             {
                 WritingId = writingId,
+                UpdatedAt = dto.UpdatedAt,
+                UploadedAt = dto.UploadedAt,
                 WritingChapterTitle = dto.ChapterTitle,
             };
 
