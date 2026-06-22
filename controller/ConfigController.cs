@@ -4,7 +4,7 @@ using System.Text.Json;
 using VictoryCloudApi.Data;
 using VictoryCloudApi.Models;
 
-// [Authorize]
+[Authorize]
 [ApiController]
 [Route("Api/[controller]")] 
 

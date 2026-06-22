@@ -9,7 +9,6 @@ using VictoryCloudApi.Util;
 
 [ApiController]
 [Route("Api/[controller]")]
-
 public class AuthController : ControllerBase
 {
     private readonly MyDbContext _context;

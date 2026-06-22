@@ -6,7 +6,7 @@ using VictoryCloudApi.Models;
 
 namespace VictoryCloudApi.Controller
 {
-    // [Authorize]
+    [Authorize]
     [ApiController]
     [Route("Api/[controller]")]
     public class WritingController : ControllerBase
@@ -125,7 +125,6 @@ namespace VictoryCloudApi.Controller
             return Ok(new { message = "Writing deleted.", writingId });
         }
 
-        // --- Chapter endpoints ---
 
         [HttpPost("{writingId}/Chapter/Create")]
         public async Task<IActionResult> CreateChapter(int writingId, [FromBody] WritingChapterDto dto)

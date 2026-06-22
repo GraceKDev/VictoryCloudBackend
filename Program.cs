@@ -29,7 +29,7 @@ builder.Services.AddCors(options =>
         policy.WithOrigins("http://localhost:3000")
               .AllowAnyHeader()
               .AllowAnyMethod()
-              .AllowCredentials(); // required for cookies
+              .AllowCredentials(); 
     });
 });
 builder.Services.AddOpenApi();
@@ -55,6 +55,27 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidIssuer = builder.Configuration["Jwt:Issuer"],
             ValidAudience = builder.Configuration["Jwt:Audience"],
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
+        };
+        options.Events = new JwtBearerEvents
+        {
+            OnMessageReceived = context =>
+            {
+                var authorizationHeader = context.Request.Headers.Authorization.ToString();
+                if (!string.IsNullOrWhiteSpace(authorizationHeader) &&
+                    authorizationHeader.StartsWith("Bearer ", StringComparison.OrdinalIgnoreCase))
+                {
+                    context.Token = authorizationHeader["Bearer ".Length..].Trim();
+                    return Task.CompletedTask;
+                }
+
+                if (context.Request.Cookies.TryGetValue("auth", out var cookieToken) &&
+                    !string.IsNullOrWhiteSpace(cookieToken))
+                {
+                    context.Token = cookieToken;
+                }
+
+                return Task.CompletedTask;
+            }
         };
     });
 builder.Services.AddAuthorization();
