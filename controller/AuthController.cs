@@ -62,10 +62,10 @@ public class AuthController : ControllerBase
         var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
         Response.Cookies.Append("auth", tokenString, new CookieOptions
         {
-            HttpOnly = true,
-            Secure = true,
-            SameSite = SameSiteMode.None,
-            Domain = "victorycloudworks.com",
+            HttpOnly = false,
+            Secure = false,
+            SameSite = SameSiteMode.Strict,
+            Domain = ".victorycloudworks.com",
             Path = "/",
             Expires = expires
         });
