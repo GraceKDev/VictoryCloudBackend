@@ -70,7 +70,6 @@ namespace VictoryCloudApi.Controller
                     .ThenInclude(c => c.WritingChapterContent)
                         .ThenInclude(wcc => wcc.WritingContentBlock)
                 .ToListAsync();
-            Console.Write(writings[0].Chapters.Count);
             return Ok(writings);
         }
         [AllowAnonymous]
