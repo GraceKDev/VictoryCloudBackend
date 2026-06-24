@@ -64,7 +64,7 @@ public class AuthController : ControllerBase
         {
             HttpOnly = false,
             Secure = false,
-            SameSite = SameSiteMode.Strict,
+            SameSite = SameSiteMode.None,
             Domain = ".victorycloudworks.com",
             Path = "/",
             Expires = expires
