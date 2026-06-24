@@ -63,8 +63,9 @@ public class AuthController : ControllerBase
         Response.Cookies.Append("auth", tokenString, new CookieOptions
         {
             HttpOnly = true,
-            Secure = false,
+            Secure = true,
             SameSite = SameSiteMode.Strict,
+            Path = "/",
             Expires = expires
         });
         return Ok(new { token = tokenString, userId = user.Id, email = user.Email });
@@ -73,7 +74,7 @@ public class AuthController : ControllerBase
     [HttpPost("Logout")]
     public IActionResult Logout()
     {
-        Response.Cookies.Delete("auth");
+        Response.Cookies.Delete("auth", new CookieOptions { Path = "/" });
         return Ok(new { message = "Logged out successfully." });
     }
 
