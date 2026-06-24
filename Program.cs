@@ -8,6 +8,8 @@ using System.Text;
 using VictoryCloudApi.Data;
 using VictoryCloudApi.Util;
 var builder = WebApplication.CreateBuilder(args);
+var debugView = builder.Configuration.GetDebugView();
+Console.WriteLine(debugView); 
 var conString = builder.Configuration.GetConnectionString("devDb") ?? 
 throw new InvalidOperationException("Connection string not found");
 builder.Services.AddDbContext<MyDbContext>(options => options.UseNpgsql(conString));
@@ -27,6 +29,10 @@ builder.Services.AddCors(options =>
     options.AddPolicy("NextJsPolicy", policy =>
     {
         policy.WithOrigins("http://localhost:3000")
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowCredentials(); 
+        policy.WithOrigins("https://victorycloudworks")
               .AllowAnyHeader()
               .AllowAnyMethod()
               .AllowCredentials(); 
