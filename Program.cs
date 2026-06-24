@@ -28,11 +28,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("NextJsPolicy", policy =>
     {
-        policy.WithOrigins("http://localhost:3000")
-              .AllowAnyHeader()
-              .AllowAnyMethod()
-              .AllowCredentials(); 
-        policy.WithOrigins("https://victorycloudworks")
+        policy.WithOrigins("http://localhost:3000","https://victorycloudworks")
               .AllowAnyHeader()
               .AllowAnyMethod()
               .AllowCredentials(); 
