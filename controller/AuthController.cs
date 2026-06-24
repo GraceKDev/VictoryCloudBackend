@@ -65,7 +65,6 @@ public class AuthController : ControllerBase
             HttpOnly = true,
             Secure = true,
             SameSite = SameSiteMode.None,
-            Path = "/",
             Expires = expires
         });
         return Ok(new { token = tokenString, userId = user.Id, email = user.Email });
