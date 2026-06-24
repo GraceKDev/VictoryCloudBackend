@@ -23,6 +23,7 @@ catch (Exception ex)
     Console.WriteLine($"Database connection failed: {ex.Message}");
 
 }
+builder.WebHost.UseUrls("http://0.0.0.0:5266");
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("NextJsPolicy", policy =>
