@@ -63,8 +63,8 @@ public class AuthController : ControllerBase
         Response.Cookies.Append("auth", tokenString, new CookieOptions
         {
             HttpOnly = true,
-            Secure = false,
-            SameSite = SameSiteMode.Strict,
+            Secure = true,
+            SameSite = SameSiteMode.Lax,
             Path = "/",
             Expires = expires
         });
