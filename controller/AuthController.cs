@@ -63,7 +63,7 @@ public class AuthController : ControllerBase
         Response.Cookies.Append("auth", tokenString, new CookieOptions
         {
             HttpOnly = false,
-            Secure = false,
+            Secure = true,
             SameSite = SameSiteMode.None,
             Domain = ".victorycloudworks.com",
             Path = "/",
