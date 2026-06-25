@@ -6,7 +6,7 @@ namespace VictoryCloudApi.Models
     {
         public int Id { get; set; }
         public required string Email { get; set; }
-        [JsonIgnore(Condition = JsonIgnoreCondition.Always)]
+    
         public required string Password { get; set; } 
         [JsonIgnore]
         public string? LastSignInDate { get; set; }
