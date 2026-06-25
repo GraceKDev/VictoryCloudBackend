@@ -9,6 +9,7 @@ namespace VictoryCloudApi.Models
         public string[] Links { get; set; } = [];
         public string UploadedAt {get;set;} = string.Empty;
         public string UpdatedAt {get;set;} = string.Empty;
+        public string CoverUrl {get;set;} = string.Empty;
         public List<WritingChapter> Chapters { get; set; } = [];
         public List<Comment>? Comments { get; set; } = [];
     }

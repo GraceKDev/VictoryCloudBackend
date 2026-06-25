@@ -34,6 +34,7 @@ namespace VictoryCloudApi.Controller
                 Tags = dto.Tags,
                 Links = dto.Links,
                 UploadedAt = dto.UploadedAt,
+                CoverUrl = dto.CoverUrl,
                 UpdatedAt = dto.UpdatedAt,
                 Chapters = dto.Chapters.Select(c => new WritingChapter
                 {
@@ -105,6 +106,7 @@ namespace VictoryCloudApi.Controller
             writing.UploadedAt = dto.UploadedAt;
             writing.UpdatedAt = dto.UpdatedAt;
             writing.Description = dto.Description;
+            writing.CoverUrl = dto.CoverUrl;
             writing.Tags = dto.Tags;
             writing.Links = dto.Links;
 
