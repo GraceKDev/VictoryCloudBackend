@@ -58,7 +58,7 @@ public class AuthController : ControllerBase
             claims: claims,
             expires: expires,
             signingCredentials: creds);
-        Console.WriteLine(token);
+        
         var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
         Response.Cookies.Append("auth", tokenString, new CookieOptions
         {
