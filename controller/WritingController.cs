@@ -57,7 +57,6 @@ namespace VictoryCloudApi.Controller
                     }).ToList(),
                 }).ToList(),
             };
-
             _context.Writing.Add(writing);
             await _context.SaveChangesAsync();
             return Ok(new { writing.WritingId });
@@ -109,6 +108,28 @@ namespace VictoryCloudApi.Controller
             writing.CoverUrl = dto.CoverUrl;
             writing.Tags = dto.Tags;
             writing.Links = dto.Links;
+            writing.Chapters = dto.Chapters.Select(c => new WritingChapter
+            {
+                WritingChapterTitle = c.ChapterTitle,
+                UploadedAt = c.UploadedAt,
+                UpdatedAt = c.UpdatedAt,
+                WritingChapterContent = c.Content.Select(wcc => new WritingChapterContent
+                {
+                    WritingContentPosition = wcc.ContentPosition,
+                    WritingContentType = wcc.ContentType,
+                    WritingContentBlock = wcc.Content == null
+                        ? new List<WritingChapterContentBlock>()
+                        : new List<WritingChapterContentBlock>
+                        {
+                    new WritingChapterContentBlock
+                    {
+                        WritingContentBlockContent = wcc.Content.Content,
+                        WritingContentBlockImageUrl = wcc.Content.ImageUrl,
+                        WritingContentBlockAltText = wcc.Content.AltText
+                    }
+                        }
+                }).ToList()
+            }).ToList();
 
             await _context.SaveChangesAsync();
             return Ok(writing);
